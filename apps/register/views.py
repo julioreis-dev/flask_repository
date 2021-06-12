@@ -8,7 +8,9 @@ from werkzeug.security import generate_password_hash
 
 @register.route('/register', methods=['GET', 'POST'])
 def register():
-    """Função que renderiza a tela de registro de um usuário."""
+    """
+    Função que renderiza a tela de registro de um usuário
+    """
     form = RegisterForm()
     if form.validate_on_submit():
         newuser = User(

@@ -5,7 +5,9 @@ from apps.home.crud import all_coins, call_api
 
 @home.route('/')
 def index():
-    """Função de abertura da página principal."""
+    """
+    Função de abertura da página principal
+    """
     list_result = []
     coins = {'BTC': 'Bitcoin', 'LINK': 'Chainlink', 'XRP': 'XRP', 'LTC': 'Litecoin', 'CHZ': 'Chiliz', 'ETH': 'Ethereum',
              'DOGE': 'Dogecoin', 'ADA': 'Cardano'}

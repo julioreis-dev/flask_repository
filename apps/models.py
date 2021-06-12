@@ -4,7 +4,9 @@ from . import db
 
 
 class User(UserMixin, db.Model):
-    """Classe que cria a tabela users para cadastro dos usuários."""
+    """
+    Classe que cria a tabela users para cadastro dos usuários
+    """
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
@@ -15,7 +17,9 @@ class User(UserMixin, db.Model):
 
 
 class CriptoTable(db.Model):
-    """Classe que cria a tabela cripto_table para cadastro dos critérios de cada usuário."""
+    """
+    Classe que cria a tabela cripto_table para cadastro dos critérios de cada usuário
+    """
     __tablename__ = "cripto_table"
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
@@ -28,7 +32,9 @@ class CriptoTable(db.Model):
 
 
 class LogEmail(db.Model):
-    """Classe que cria a tabela log_table para registro dos emails de alerta encaminhados para os diversos usuários."""
+    """
+    Classe que cria a tabela log_table para registro dos emails de alerta encaminhados para os diversos usuários
+    """
     __tablename__ = "log_table"
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
@@ -39,8 +45,10 @@ class LogEmail(db.Model):
 
 
 class Criptocotation(db.Model):
-    """Classe que cria a tabela cripto_cotation para registro dos dados consumidos da API que informa a cotação atual
-    de cada criptocoin. """
+    """
+    Classe que cria a tabela cripto_cotation para registro dos dados consumidos da API que informa a cotação atual
+    de cada criptocoin
+    """
     __tablename__ = "cripto_cotation"
     id = db.Column(db.Integer, primary_key=True)
     coin_name = db.Column(db.String(250), nullable=False)
@@ -49,7 +57,9 @@ class Criptocotation(db.Model):
     date = db.Column(db.DATETIME)
 
     def to_dict(self):
-        """Método que retorna um dicionário relativo a cada registro da tabela cripto_cotation."""
+        """
+        Método que retorna um dicionário relativo a cada registro da tabela cripto_cotation
+        """
         return {col.name: getattr(self, col.name) for col in self.__table__.columns}
 
 

@@ -47,7 +47,12 @@ from apps.home.crud import call_api, monitor_data
 
 @app.before_first_request
 def init_scheduler():
-    """Função que antes do primeiro request inicia a função call_api e monitor_data em background."""
+    """
+    Função que antes do primeiro request inicia a função call_api e monitor_data em background.
+    função all_api atualiza as cotações por meio de leitura de API em cada 30 segundos.
+    função monitor_data monitora os parametros cadastrados pelos clientes a cada 40 segundos.
+
+     """
     scheduler = BackgroundScheduler(daemon=True)
     scheduler.add_job(func=call_api, trigger='cron', second=30)
     scheduler.start()
@@ -57,12 +62,6 @@ def init_scheduler():
     scheduler1.add_job(func=monitor_data, trigger='cron', second=40)
     scheduler1.start()
     atexit.register(lambda: scheduler1.shutdown())
-
-    # scheduler2 = BackgroundScheduler(daemon=True)
-    # scheduler2.add_job(func=oi, trigger='cron', minute='*')
-    # scheduler2.start()
-    # atexit.register(lambda: scheduler2.shutdown())
-
 
 if __name__ == "__main__":
     app.run(debug=False)

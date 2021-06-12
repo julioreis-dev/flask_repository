@@ -10,7 +10,9 @@ from flask_login import login_user, login_required, logout_user
 
 @login.route('/logins', methods=['GET', 'POST'])
 def logins():
-    """Função que renderiza a tela de login."""
+    """
+    Função que renderiza a tela de login
+    """
     form = LoginForm()
     if form.validate_on_submit():
         email_user = form.email.data
@@ -31,7 +33,9 @@ def logins():
 @login.route('/logout')
 @login_required
 def logout():
-    """Função que encerra a sessão de um usuário logado."""
+    """
+    Função que encerra a sessão de um usuário logado
+    """
     logout_user()
     flash('Sessão encerrada com sucesso!!!')
     return redirect(url_for('home.index'))

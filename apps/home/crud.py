@@ -82,7 +82,9 @@ def preparation(user, coins):
 
 
 def sent_mail(dest, msg, name):
-    """Função que envia email"""
+    """
+    Função que envia email
+    """
     my_email = env.str('NT_EMAIL')
     my_password = env.str('NT_EMAIL_PASSWORD')
     with smtplib.SMTP('smtp.gmail.com', 587) as connection:
@@ -93,7 +95,9 @@ def sent_mail(dest, msg, name):
 
 
 def monitor_data():
-    """Função que monitora os parametros cadastrados por cada cliente."""
+    """
+    Função que monitora os parametros cadastrados por cada cliente
+    """
     info_user = all_users()
     if info_user is not None:
         for informes in info_user:
@@ -102,7 +106,9 @@ def monitor_data():
 
 
 def check_assets(info):
-    """Função que monitora e encaminha os emails de alerta de acordo com o timer estabelecido pelo cliente."""
+    """
+    Função que monitora e encaminha os emails de alerta de acordo com o timer estabelecido pelo cliente
+    """
     info_coins = general_info(info.id)
     if info_coins is not None:
         for each in info_coins:
@@ -129,7 +135,9 @@ def check_assets(info):
 
 
 def add_log(user, current_coin):
-    """Função que registra na tabela log_table todos emails de alerta encaminhados para os clientes."""
+    """
+    Função que registra na tabela log_table todos emails de alerta encaminhados para os clientes
+    """
     newlog = LogEmail(
         date=datetime.now(),
         user_id=user.id,
@@ -140,7 +148,9 @@ def add_log(user, current_coin):
 
 
 def all_logs(id_number, id_coin):
-    """Função que retorna todas os emails de alerta encaminhado a um cliente referente a uma determinada criptocoin."""
+    """
+    Função que retorna todas os emails de alerta encaminhado a um cliente referente a uma determinada criptocoin
+    """
     data = db.session.query(LogEmail).filter(LogEmail.user_id == id_number).filter(LogEmail.coin_id == id_coin).all()
     if not data:
         return None
@@ -149,7 +159,10 @@ def all_logs(id_number, id_coin):
 
 
 def last_log(id_number, id_coin):
-    """Função que retorna o ultimo registro de email de alerta encaminhado a um cliente referente a uma determinada criptocoin."""
+    """
+    Função que retorna o ultimo registro de email de alerta encaminhado a um cliente referente a uma
+    determinada criptocoin
+    """
     data = db.session.query(LogEmail).filter(LogEmail.user_id == id_number).filter(LogEmail.coin_id == id_coin).all()
     if not data:
         return None
@@ -158,7 +171,9 @@ def last_log(id_number, id_coin):
 
 
 def record_user(id_number, name_coin):
-    """Função que retorna o primeiro registro de um cliente referente a uma determinada criptocoin."""
+    """
+    Função que retorna o primeiro registro de um cliente referente a uma determinada criptocoin
+    """
     data = db.session.query(CriptoTable).filter(CriptoTable.user_id == id_number).filter(
         CriptoTable.coin == name_coin).first()
     if not data:
@@ -168,7 +183,9 @@ def record_user(id_number, name_coin):
 
 
 def all_users():
-    """Função que retorna todos os usuários"""
+    """
+    Função que retorna todos os usuários
+    """
     data = db.session.query(User).all()
     if not data:
         return None
@@ -177,9 +194,8 @@ def all_users():
 
 
 def general_info(user):
-    """Função que retorna todos os registros referente aos critérios estabelecidos por uma determinado cliente."""
+    """
+    Função que retorna todos os registros referente aos critérios estabelecidos por uma determinado cliente
+    """
     data = db.session.query(CriptoTable).filter_by(user_id=user).all()
     return data
-
-# def oi():
-#     print(f'Oi {datetime.now()}')

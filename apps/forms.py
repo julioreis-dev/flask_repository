@@ -7,7 +7,9 @@ timer = [5, 10, 15, 20, 25, 30]
 
 
 class RegisterForm(FlaskForm):
-    """Classe que cria o formulário de registro de usuários."""
+    """
+    Classe que cria o formulário de registro de usuários
+    """
     name = StringField('Nome do usuário', validators=[DataRequired()])
     email = StringField(label='Email', validators=[DataRequired(), Email(message='This field requires a valid email '
                                                                                  'address')])
@@ -18,7 +20,9 @@ class RegisterForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    """Classe que cria o formulário de login de usuário."""
+    """
+    Classe que cria o formulário de login de usuário
+    """
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password',
                              validators=[DataRequired(),
@@ -27,8 +31,10 @@ class LoginForm(FlaskForm):
 
 
 class CreatePostForm(FlaskForm):
-    """Classe que cria o formulário de registro dos critérios de compra e venda dos ativos configurados pelos
-    usuários. """
+    """
+    Classe que cria o formulário de registro dos critérios de compra e venda dos ativos configurados pelos
+    usuários
+    """
     data_coin = SelectField("Escolha a sua criptomoeda", choices=coins, validators=[DataRequired()])
     data_sell = StringField("Valor de venda", validators=[DataRequired()], default=0.0)
     data_buy = StringField("Valor de compra", validators=[DataRequired()], default=0.0)
@@ -37,7 +43,9 @@ class CreatePostForm(FlaskForm):
 
 
 class EditPostForm(FlaskForm):
-    """Classe que cria o formulário de edição dos critérios de compra e venda de ativos."""
+    """
+    Classe que cria o formulário de edição dos critérios de compra e venda de ativos
+    """
     data_sell = StringField("Valor de venda", validators=[DataRequired()])
     data_buy = StringField("Valor de compra", validators=[DataRequired()])
     data_timer = SelectField("Timer de alerta", choices=timer, validators=[DataRequired()])
