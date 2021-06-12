@@ -1,0 +1,55 @@
+{% include "header.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://fia.com.br/blog/wp-content/uploads/2018/10/criptomoedas-o-que-sao-para-que-servem-como-investir.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Ativos</h1>
+              <span class="subheading">Edite os seus ativos.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+<div class="col-lg-8 col-md-10 mx-auto content">
+    <h1>Edite os dados</h1>
+<!--<table class="table">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Cripto</th>
+        <th scope="col">Sell</th>
+        <th scope="col">Buy</th>
+      </tr>
+    </thead>
+   <tbody>
+      <tr>
+        <th scope="row">{{post.coin}}</th>
+        <td>${{post.sell}}</td>
+        <td>${{post.buy}}</td>
+      </tr>
+    </tbody>
+  </table> -->
+</div>
+<hr>
+<!--           Comments Area -->
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% with messages = get_flashed_messages() %}
+          {% for message in messages: %}
+              <p class=error><strong>{{ message }}</strong>
+          {% endfor %}
+        {% endwith %}
+        {{ wtf.quick_form(post, novalidate=True, button_map={"submit": "primary"}) }}
+      </div>
+    </div>
+</div>
+<hr>
+{% include "footer.html" %}

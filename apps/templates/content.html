@@ -1,0 +1,58 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://fia.com.br/blog/wp-content/uploads/2018/10/criptomoedas-o-que-sao-para-que-servem-como-investir.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Ativos</h1>
+              <span class="subheading">Monitore os seus ativos em tempo real.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+<div class="col-lg-8 col-md-10 mx-auto content">
+  {% with messages = get_flashed_messages() %}
+    {% for message in messages: %}
+        <p class=error><strong>{{ message }}</strong>
+    {% endfor %}
+  {% endwith %}
+
+  {% if not all_results: %}
+    <h3>Prezado usuário você ainda não tem ativos cadastrados.</h3>
+  {% endif %}
+
+  <table class="table">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Cripto</th>
+        <th scope="col">Venda</th>
+        <th scope="col">Compra</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for result in all_results %}
+      <tr>
+        <th scope="row"><a href="{{ url_for('coin.edit_content', coin_id=result.id) }}">{{result.coin}}</a></th>
+        <td>${{result.sell}}</td>
+        <td>${{result.buy}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% if current_user.is_active: %}
+  <!-- New Post -->
+    <div class="clearfix">
+      <a class="btn btn-primary float-right" href="{{url_for('coin.register_cript')}}">Cadastrar</a>
+      <!--<a class="btn btn-primary float-left" href="{{url_for('coin.register_cript')}}">Editar</a>-->
+    </div>
+  {% endif %}
+</div>
+<hr>
+
+{% include "footer.html" %}
