@@ -50,7 +50,7 @@ def init_scheduler():
     """
     Função que antes do primeiro request inicia a função call_api e monitor_data em background.
     função all_api atualiza as cotações por meio de leitura de API em cada 30 segundos.
-    função monitor_data monitora os parametros cadastrados pelos clientes a cada 40 segundos.
+    função monitor_data monitora os parametros cadastrados de todos os clientes a cada 40 segundos.
 
      """
     scheduler = BackgroundScheduler(daemon=True)
